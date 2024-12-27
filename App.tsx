@@ -14,9 +14,14 @@ export default function App() {
     setItem([...item, newItemId])
   }
 
+  const [isVisible, setIsVisible] = useState(false);
+  const switchNewItemMenu = () => {
+    if (!isVisible){setIsVisible(true)} else {setIsVisible(false)}
+  }
+
   return (
     <View style={styles.container}>
-      <NewItem/>
+      <NewItem state={isVisible}/>
       <ScrollView style={styles.scrowView}>
         {item.map((id) => (
           <View key={id} style={styles.item}>
@@ -28,7 +33,7 @@ export default function App() {
         
       </ScrollView>
       <View style={styles.homeBar}>
-        <TouchableOpacity onPress={addNewItem} style={styles.invCircle}>
+        <TouchableOpacity onPress={switchNewItemMenu} style={styles.invCircle}>
           
         </TouchableOpacity>
         <View style={styles.circle}></View>
