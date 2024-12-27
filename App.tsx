@@ -33,10 +33,19 @@ export default function App() {
         
       </ScrollView>
       <View style={styles.homeBar}>
-        <TouchableOpacity onPress={switchNewItemMenu} style={styles.invCircle}>
+        <View style={{position: 'relative', left: 0}}>
+        <TouchableOpacity onPress={switchNewItemMenu} style={styles.Circle}>
           
-        </TouchableOpacity>
-        <View style={styles.circle}></View>
+          </TouchableOpacity>
+          <View style={styles.invCircle}>
+            <View style={styles.invSquareLeft}>
+            <View style={styles.invSemiCircleLeft}></View>
+            </View>
+            <View style={styles.invSquareRight}>
+            <View style={styles.invSemiCircleRight}></View>
+            </View>
+          </View>
+        </View>
         
       </View>
     </View>
@@ -58,7 +67,7 @@ const styles = StyleSheet.create({
     height: 80,
 
   },
-  circle: {
+  invCircle: {
     margin: 'auto',
     bottom: 110,
     backgroundColor: '#FFFFFF',
@@ -67,7 +76,37 @@ const styles = StyleSheet.create({
     height: 67,
     zIndex: 0
   },
-  invCircle: {
+  invSemiCircleLeft: {
+    position: 'relative',
+    backgroundColor: '#B911F0',
+    borderRadius: 30,
+    left: -29.7,
+    width: 50,
+    height: 40
+  },
+  invSemiCircleRight: {
+    backgroundColor: '#B911F0',
+    borderRadius: 30,
+    width: 50,
+    height: 40
+  },
+  invSquareLeft: {
+    position: 'relative',
+    left: -10,
+    top: 43,
+    backgroundColor: 'white',
+    width: 20,
+    height: 10
+  },
+  invSquareRight: {
+    position: 'relative',
+    right: -70,
+    top: 33,
+    backgroundColor: 'white',
+    width: 20,
+    height: 10
+  },
+  Circle: {
     margin: 'auto',
     bottom: 55,
     backgroundColor: 'black',
