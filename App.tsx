@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
+import LinearGradient from "react-native-linear-gradient";
 import { Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
-import NewItem from './components/NewItem';
+import NewItem from './components/NewItemCreator';
 
 export default function App() {
 
@@ -20,6 +21,7 @@ export default function App() {
   }
 
   return (
+    
     <View style={styles.container}>
       <NewItem state={isVisible}/>
       <ScrollView style={styles.scrowView}>
@@ -33,7 +35,7 @@ export default function App() {
         
       </ScrollView>
       <View style={styles.homeBar}>
-        <View style={{position: 'relative', left: 0}}>
+        <View style={{position: 'relative', left: 125}}>
         <TouchableOpacity onPress={switchNewItemMenu} style={styles.Circle}>
           
           </TouchableOpacity>
@@ -55,7 +57,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#151515',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   invCircle: {
     margin: 'auto',
     bottom: 110,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#151515',
     width: 80,
     borderRadius: '50%',
     height: 67,
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     left: -10,
     top: 43,
-    backgroundColor: 'white',
+    backgroundColor: '#151515',
     width: 20,
     height: 10
   },
@@ -102,14 +104,14 @@ const styles = StyleSheet.create({
     position: 'relative',
     right: -70,
     top: 33,
-    backgroundColor: 'white',
+    backgroundColor: '#151515',
     width: 20,
     height: 10
   },
   Circle: {
     margin: 'auto',
     bottom: 55,
-    backgroundColor: 'black',
+    backgroundColor: '#B911F0',
     width: 67,
     borderRadius: '50%',
     height: 67,
