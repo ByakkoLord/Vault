@@ -1,6 +1,7 @@
 import { TextInput, View } from "react-native";
 import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types';
 import { useState } from "react";
 
@@ -21,13 +22,13 @@ export default function NewItem({state}: stateProps) {
           placeholderTextColor="gray"
         />
         <TextInput
-          placeholder="Nome"
+          placeholder="Pagador"
           editable={true}
           style={[styles.input, {width: 300, height: 50,}]}
           placeholderTextColor="gray"
         />
         <TextInput
-          placeholder="Nome"
+          placeholder="Valor"
           editable={true}
           style={[styles.input, {width: 300, height: 50,}]}
           placeholderTextColor="gray"
@@ -40,13 +41,15 @@ export default function NewItem({state}: stateProps) {
           placeholderTextColor="gray"
         />
         <TextInput
-          placeholder="1X"
+          placeholder="dd/mm/yyyy"
           editable={true}
           style={[styles.input, {width: 200, height: 50,}]}
           placeholderTextColor="gray"
         />  
         </View>
+        <TouchableOpacity style={styles.confirmButton}/>
       </LinearGradient>
+      
         
     )
     
@@ -70,6 +73,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'black',
         backgroundColor: '#231F1F'
+    },
+    confirmButton: {
+        width: 45,
+        height: 45,
+        borderRadius: '50%',
+        backgroundColor: 'green'
     }
 })
 

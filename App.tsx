@@ -1,6 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import LinearGradient from "react-native-linear-gradient";
 import { Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
 import NewItem from './components/NewItemCreator';
