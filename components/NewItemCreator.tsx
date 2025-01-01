@@ -3,14 +3,21 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../contexts/appContext";
 
 type stateProps = {
     state: boolean
 }
 
 export default function NewItem({state}: stateProps) {
-    
+
+      const {billInfo ,setBillInfo} = useContext(AppContext)
+
+      const createItem = () => {
+        setBillInfo(true)
+        console.log(billInfo)
+      }
 
     return(
         
@@ -47,7 +54,7 @@ export default function NewItem({state}: stateProps) {
           placeholderTextColor="gray"
         />  
         </View>
-        <TouchableOpacity style={styles.confirmButton}/>
+        <TouchableOpacity onPress={createItem} style={styles.confirmButton}/>
       </LinearGradient>
       
         

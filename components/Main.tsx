@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { AppContext, AppProvider } from './contexts/appContext';
+import NewItem from './NewItemCreator';
+import { AppContext } from '../contexts/appContext';
 
-import Main from './components/Main';
+
 
 export default function App() {
 
@@ -17,20 +18,46 @@ export default function App() {
     setItem([...item, newItemId])
   }
 
-  
+  const {billInfo, setBillInfo } = useContext(AppContext)
 
   const [isVisible, setIsVisible] = useState(false);
   const switchNewItemMenu = () => {
+    console.log(billInfo)
     if (!isVisible){setIsVisible(true)} else {setIsVisible(false)}
   }
 
 
 
   return (
-    
-    <AppProvider>
-      <Main/>
-    </AppProvider>
+    <View style={styles.container}>
+      <NewItem state={isVisible}/>
+      <ScrollView style={styles.scrowView}>
+        {item.map((id) => (
+          <View key={id} style={styles.item}>
+          <Text style={styles.chargeName}>Name</Text>
+          <Text style={styles.value}>Value</Text>
+          <Text style={styles.date}>xx/xx/xx</Text>
+        </View>
+        ))}
+        
+      </ScrollView>
+      <View style={styles.homeBar}>
+        <View style={{position: 'relative', left: 125}}>
+        <TouchableOpacity onPress={switchNewItemMenu} style={styles.Circle}>
+          
+          </TouchableOpacity>
+          <View style={styles.invCircle}>
+            <View style={styles.invSquareLeft}>
+            <View style={styles.invSemiCircleLeft}></View>
+            </View>
+            <View style={styles.invSquareRight}>
+            <View style={styles.invSemiCircleRight}></View>
+            </View>
+          </View>
+        </View>
+        
+      </View>
+    </View>
   );
 }
 
