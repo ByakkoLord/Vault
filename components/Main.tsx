@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import NewItem from './NewItemCreator';
 import { AppContext } from '../contexts/appContext';
@@ -15,7 +15,15 @@ export default function App() {
     setItem([...item, newItemId])
   }
 
-  const {billInfo, setBillInfo, isActivated } = useContext(AppContext)
+  const {billInfo, setBillInfo, isActivated, setIsActivated } = useContext(AppContext)
+
+  useEffect(() => {
+    if(isActivated){addNewItem()}
+    console.log(isActivated)
+    setIsActivated(false)
+    console.log('carro')
+  }, [isActivated, setIsActivated])
+
 
   const [isVisible, setIsVisible] = useState(false);
   const switchNewItemMenu = () => {
