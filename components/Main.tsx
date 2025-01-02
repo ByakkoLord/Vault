@@ -9,20 +9,18 @@ export default function App() {
 
   const [item, setItem] = useState<number[]>([]);
 
-  
-  
-
   const addNewItem = () => {
     console.log('Item Adicionado')
     const newItemId = item.length + 1
     setItem([...item, newItemId])
   }
 
-  const {billInfo, setBillInfo } = useContext(AppContext)
+  const {billInfo, setBillInfo, isActivated } = useContext(AppContext)
 
   const [isVisible, setIsVisible] = useState(false);
   const switchNewItemMenu = () => {
     console.log(billInfo)
+    console.log(isActivated)
     if (!isVisible){setIsVisible(true)} else {setIsVisible(false)}
   }
 

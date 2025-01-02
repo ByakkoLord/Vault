@@ -12,10 +12,18 @@ type stateProps = {
 
 export default function NewItem({state}: stateProps) {
 
-      const {billInfo ,setBillInfo} = useContext(AppContext)
+      const {billInfo ,setBillInfo, setIsActivated} = useContext(AppContext)
+
+      const [name, setName] = useState<string>('')
+      const [payer, setPayer] = useState<string>('')
+      const [value, setValue] = useState<string>('')
+      const [portion, setPortion] = useState<string>('')
+      const [date, setDate] = useState<string>('')
+      
 
       const createItem = () => {
-        setBillInfo(true)
+        setBillInfo([name, payer, value, portion, date])
+        setIsActivated(true)
         console.log(billInfo)
       }
 
@@ -27,18 +35,21 @@ export default function NewItem({state}: stateProps) {
           editable={true}
           style={[styles.input, {width: 300, height: 50,}]}
           placeholderTextColor="gray"
+          onChangeText={setName}
         />
         <TextInput
           placeholder="Pagador"
           editable={true}
           style={[styles.input, {width: 300, height: 50,}]}
           placeholderTextColor="gray"
+          onChangeText={setPayer}
         />
         <TextInput
           placeholder="Valor"
           editable={true}
           style={[styles.input, {width: 300, height: 50,}]}
           placeholderTextColor="gray"
+          onChangeText={setValue}
         />
         <View style={{display: 'flex', flexDirection: 'row', width: 320, justifyContent: 'space-around'}}>
         <TextInput
@@ -46,12 +57,14 @@ export default function NewItem({state}: stateProps) {
           editable={true}
           style={[styles.input, {width: 80, height: 50,}]}
           placeholderTextColor="gray"
+          onChangeText={setPortion}
         />
         <TextInput
           placeholder="dd/mm/yyyy"
           editable={true}
           style={[styles.input, {width: 200, height: 50,}]}
           placeholderTextColor="gray"
+          onChangeText={setDate}
         />  
         </View>
         <TouchableOpacity onPress={createItem} style={styles.confirmButton}/>
@@ -78,7 +91,7 @@ const styles = StyleSheet.create({
         marginTop: 25,
         borderRadius: 10,
         fontSize: 20,
-        color: 'black',
+        color: 'gray',
         backgroundColor: '#231F1F'
     },
     confirmButton: {
