@@ -2,8 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import NewItem from './NewItemCreator';
 import { AppContext } from '../contexts/appContext';
-
-
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function App() {
 
@@ -11,19 +10,22 @@ export default function App() {
 
   const addNewItem = () => {
     console.log('Item Adicionado')
-    const newItemId = item.length + 1
-    setItem([...item, newItemId])
+    const newItem = {
+      id: item.length + 1,
+      name: `Item ${item.length + 1}`,
+      value: `${Math.random() * 100}`
+    }
+    setItem([...item, newItem.id])
   }
 
   const {billInfo, setBillInfo, isActivated, setIsActivated } = useContext(AppContext)
+  
 
   useEffect(() => {
     if(isActivated){addNewItem()}
     console.log(isActivated)
     setIsActivated(false)
-    console.log('carro')
   }, [isActivated, setIsActivated])
-
 
   const [isVisible, setIsVisible] = useState(false);
   const switchNewItemMenu = () => {
@@ -32,19 +34,31 @@ export default function App() {
     if (!isVisible){setIsVisible(true)} else {setIsVisible(false)}
   }
 
-
-
   return (
     <View style={styles.container}>
       <NewItem state={isVisible}/>
       <ScrollView style={styles.scrowView}>
-        {item.map((id) => (
-          <View key={id} style={styles.item}>
-          <Text style={styles.chargeName}>Name</Text>
-          <Text style={styles.value}>Value</Text>
-          <Text style={styles.date}>xx/xx/xx</Text>
-        </View>
+      {billInfo.map((info) => (
+            <LinearGradient start={{x: 0.1, y: -6 }} end={{x: 1.9, y: 1 }} colors={['#2B2727', '#2B2727', '#B93254']} key={info.id} style={styles.item}>
+                <Text style={styles.value}>R$ {info.value}</Text>
+                
+                <View style={styles.infoBlocks}>
+                  <Text style={[styles.blockText, {fontSize: 20}]}>{info.name}</Text>
+                </View>
+                <View style={styles.infoBlocks1}>
+                  <TouchableOpacity style={[styles.funcButton, {position: 'absolute', left: 25}]}>
+
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.funcButton, {position: 'absolute', left: 95}]}>
+
+                </TouchableOpacity>
+                  <Text style={styles.chargeName}>{info.payer}</Text>
+                  <Text style={styles.date}>{info.date}</Text>
+                </View>
+                
+            </LinearGradient>
         ))}
+
         
       </ScrollView>
       <View style={styles.homeBar}>
@@ -133,9 +147,10 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: 'gray',
     margin: 'auto',
-    marginTop: 15,
+    marginTop: 45,
     width: '90%',
-    height: 80     
+    height: 80,
+    borderRadius: 25     
   },
   scrowView: {
     height: '100%',
@@ -144,23 +159,67 @@ const styles = StyleSheet.create({
   },
   chargeName: {
     position: 'absolute',
-    top: 15,
-    left: 15
+    top: 40,
+    color: 'gray',
+    fontSize: 30,
+    left: 165
   },
   value: {
     position: 'absolute',
-    top: 28,
-    right: 15
+    top: 20,
+    left: 20,
+    fontSize: 35,
+    color: 'gray'
   },
   date:{
     position: 'absolute',
-    top: 50,
-    left: 15
+    top: 10,
+    left: 165,
+    fontSize: 25,
+    color: 'gray'
   },
   input1: {
     width: 300,
     height: 90,
     color: 'black',
     backgroundColor: 'white'
-}
+},
+  infoBlocks:{
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    top: -30,
+    left: 45,
+    width: 80,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    height: 30,  
+    backgroundColor: '#231E1E'
+  },
+  infoBlocks1:{
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    top: 50,
+    left: 70,
+    width: 300,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    height: 80,  
+    backgroundColor: '#231E1E'
+  },
+  blockText: {
+    color: 'gray',
+    marginTop: 7,
+    textAlign: 'center'
+  },
+  funcButton: {
+    width: 40,
+    top: 20,
+    height: 40,
+    borderRadius: '50%',
+    backgroundColor: 'gray'
+  }
 });

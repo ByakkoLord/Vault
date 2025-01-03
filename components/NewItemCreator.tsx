@@ -22,7 +22,18 @@ export default function NewItem({state}: stateProps) {
       
 
       const createItem = () => {
-        setBillInfo([name, payer, value, portion, date])
+        const newItem = {
+          id: Date.now(),
+          name,
+          payer,
+          value,
+          portion,
+          date
+        }
+        setBillInfo((prev: { id: number; name: string; payer: string; value: string; portion: string; date: string }[]) => [
+          ...prev,
+          newItem,
+      ])
         setIsActivated(true)
         console.log(billInfo)
       }
